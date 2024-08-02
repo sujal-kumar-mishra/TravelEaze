@@ -1,0 +1,201 @@
+<html>
+
+<head>
+    <title>Admin HomePage</title>
+    <script src="functions.js"></script>
+    <link rel="stylesheet" href="css/homePage.css">
+    <link rel="stylesheet" 
+        href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <meta name="viewport" 
+        content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" 
+        href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+    <title>Admin HomePage</title>
+
+
+    <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+    <script type="text/javascript">
+        window.onload = function () {
+
+            var buses = [];
+            <% for(let i=0;i<bus.length;i++){ %>
+                buses.push({label:"<%= bus[i].x%>" , y: <%= bus[i].y %> })
+            <% } %>
+
+            var tours = [];
+            <% for(let i=0;i<tour.length;i++){ %>
+                tours.push({label:"<%= tour[i].x%>" , y: <%= tour[i].y %> })
+            <% } %>
+
+            console.log(buses);
+            console.log(tours);
+
+            var chart = new CanvasJS.Chart("chart",
+            {
+            title:{
+            text: "Tickets Booked On Each Day"
+            },
+            axisX:{
+            title : "Date"
+            },
+            axisY:{
+            title : "No of Tickets Booked"
+            },
+            data: [
+            {
+                type: "spline",
+                legendText: "Bus tickets",
+                showInLegend: true, 
+                dataPoints: buses
+            },
+            {
+                type: "spline",
+                legendText: "Tours tickets",
+                showInLegend: true, 
+                dataPoints: tours
+            }
+            ]
+            });
+            chart.render();
+            
+            var agencies = [];
+            <% for(let i=0; i<travel_agency.length; i++){ %>
+                 agencies.push({ label:"<%=travel_agency[i].x %>", y:<%= travel_agency[i].y %> });
+            <% } %>
+
+            console.log(agencies);
+
+            var chart = new CanvasJS.Chart("chart1", {
+                title:{
+                    text: "Count of Buses each Agency Own"              
+                },
+                axisX:{
+                title : "Agencies"
+                },
+                axisY:{
+                title : "No of Buses"
+                },
+                data: [              
+                {
+                    type: "column",
+                    dataPoints : agencies
+                }
+                ]
+            });
+            chart.render();
+        }
+        </script>
+</head>
+
+    <body>
+        <nav class="navbar navbar-expand-lg navbar-light fixed-top bg-light">
+            <a class="navbar-brand" href="#">Travel Services</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+          
+            <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+              <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+                <li class="nav-item ">
+                  <a class="nav-link" href="/addBus">Add Bus</a>
+                </li>
+                <li class="nav-item ">
+                    <a class="nav-link" href="/addTours">Add Tours</a>
+                </li>
+                <li class="nav-item ">
+                    <a class="nav-link" href="/addAgency">Add Travel Agency</a>
+                </li>
+              </ul>
+              <form action="/" class="form-inline my-2 my-lg-0">
+                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Log Out</button>
+              </form>
+            </div>
+          </nav>
+
+
+          <section class="header" style="background-image:url('images/slide.jpg') ;  padding-top: 70px;">
+            <div class="container">
+                <img src="images/logo.png">
+                <p class="login-btn">Hello Admin</p>
+            </div>
+            <h1>Travel Across the Globe</h1>
+            <p>Be adventurous! Follow the Passion</p>
+        </section>
+
+
+        <section class="features">
+            <div class="row">
+                <!-- <div class="" id="chart" style="height: 500px; width: 50%; margin-left: 400px;"> -->
+                <!-- <div class="" id="travelagency" style="height: 500px; width: 50%; margin-left: 400px; margin-bottom: 50px;"></div> -->
+                <div class="" id="chart" style="height: 500px; width: 50%; margin-left: 400px; margin-bottom: 50px;"></div>
+            </div>
+            <br>
+            <br>
+            <br>
+            <div class="row">
+                <!-- <div class="" id="ticketsChart" style="height: 500px; width: 50%; margin-left: 400px;"> -->
+                <div class="" id="chart1" style="height: 500px; width: 50%; margin-left: 400px;">
+                <!-- <div class="" id="chart1" style="height: 500px; width: 50%; margin-left: 400px;"></div> -->
+            </div>
+        </section>
+
+
+        <!-- <section class="banner" style="background-image: url('images/slide.jpg');">
+            <div class="banner-highlights">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-8">
+                            <h2>User is the King</h2>
+                            <p>Make sure he/she has a crash-less access to our website</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section> -->
+
+        
+        <section class="footer">
+            <div class="container">
+                <div class="row">
+
+                    <div class="col-md-3">
+                        <img src="images/logo.png" class="footer-logo">
+                        <p class="no-point">Travel Services Database Management System done for the DBMS Mini Project</p>
+                    </div>
+
+                    <div class="col-md-3">
+                        <h4>Features</h4>
+                        <p>Deals & offers</p>
+                        <p>Customer Reviews</p>
+                        <p>Cancellation Policy</p>
+                    </div>
+
+                    <div class="col-md-3">
+                        <h4>Quick Contact</h4>
+                        <p><a href="tel:+91 8088185620"><i class="fa fa-phone-square"></i></a>
+                            +91 9449283794</p>
+                        <p><a href="mailto:travelservice@gmail.com"><i class="fa fa-envelope"></i></a>travelservice@gmail.com</p>
+                        <p><i class="fa fa-home"></i>2nd Cross, Richmond Circle, Bengaluru 560 001</p>
+                    </div>
+      
+                    <div class="col-md-3">
+                        <h4>Follow Us on</h4>
+                        <p><a href="https://www.facebook.com/"><i class="fa fa-facebook-official"></i></a>Facebook</p>
+                        <p><a href="https://www.youtube.com/"><i class="fa fa-youtube"></i></a>Youtube</p>
+                        <p><a href="https://twitter.com/"><i class="fa fa-twitter"></i></a>Twitter</p>
+                    </div>
+
+                </div>
+                <hr>
+                <p class="copyright">By Anil and Punith<i class="fa fa-paper-plane-o"></i></p>
+            </div>
+        </section>
+
+
+        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
+
+    </body>
+
+</html>

@@ -1,0 +1,364 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/addBusForm.css">
+    <title>Add Tours Form</title>
+    <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"> </script> 
+  </head>
+  <body>
+
+    <nav class="navbar navbar-expand-lg navbar-light fixed-top bg-light">
+      <a class="navbar-brand" href="#">Travel Services</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+    
+      <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+        <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+          <li class="nav-item ">
+            <a class="nav-link" href="/addBus">Add Bus</a>
+          </li>
+          <li class="nav-item ">
+              <a class="nav-link" href="/addTours">Add Tours</a>
+          </li>
+          <li class="nav-item ">
+              <a class="nav-link" href="/addAgency">Add Travel Agency</a>
+          </li>
+        </ul>
+        <form action="/" class="form-inline my-2 my-lg-0">
+          <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Log Out</button>
+        </form>
+      </div>
+    </nav>
+
+
+      <div class="container">
+        <table class="table table-bordered">
+          <thead class="thead-dark">
+            <tr>
+              <th scope="col">Tour Id</th>
+              <th scope="col">Destination</th>
+              <th scope="col">Date of Journey</th>
+              <th scope="col">Places Included</th>
+              <th scope="col">Description</th>
+             
+              <th scope="col">No Of Days</th>
+              <th scope="col">No Of Nights</th>
+              <th scope="col">Price</th>
+              <th scope="col">Seats Available</th>
+              <th scope="col"></th>
+            </tr>
+          </thead>
+
+
+          <tbody id="list_table">
+            <% for(let i=0;i<data.length;i++){ %>
+              <tr>
+                <th class="tourId"><%= data[i].tour_id %></th>
+                <th class="from"><%= data[i].source %></th>
+                <th class="extra"><%= data[i].start_date %></th>
+                <th class="startsOn" style="display: none"><%= data[i].extra %></th>
+                <th class="placeIncluded"><%= data[i].places %></th>
+                <th class="description"><%= data[i].description %></th>
+               
+                <th class="noOfDays"><%= data[i].no_of_days %></th>
+                <th class="noOfNights"><%= data[i].no_of_nights %></th>
+                <th class="price"><%= data[i].price %></th>
+                <th class="seatsAvailable"><%= data[i].seats_available %></th>
+                <th><button class="gfgselect btn-secondary" data-toggle="modal" data-target="#staticBackdrop">EDIT</button></th>
+              </tr>
+            <% } %>
+          </tbody>
+
+        </table>
+
+        <div class="button">
+            <button type="submit" class="btn btn-success" data-toggle="modal" data-target="#StaticBackdrop" style="width: 200%;" >Add New Tour</button>
+        </div>
+      </div>
+
+
+      <!-- Modal -->
+  <div class="modal fade" id="staticBackdrop" data-backdrop="static" data-keyboard="false" 
+                            tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="staticBackdropLabel">Edit Details</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+            <div class="modal-body">
+              <div class="Container">
+
+                <form action="/updateTours" method="POST">
+                    <div class="form-group row">
+                      <label for="Date" class="col-sm-4 col-form-label">Tour Id</label>
+                      <div class="col-sm-8">
+                        <input type="text" readonly class=" form-control" name="tourId" id="TourId">
+                      </div>
+                    </div>
+
+                    <div class="form-group row">
+                      <label for="emp_id" class="col-sm-4 col-form-label">Destination</label>
+                      <div class="col-sm-8">
+                        <input type="text" class="form-control" name="from" id="From" required>
+                      </div>
+                    </div>
+
+                    <div class="form-group row">
+                      <label for="emp_id" class="col-sm-4 col-form-label">Starts On</label>
+                      <div class="col-sm-8">
+                        <input type="date" class="form-control" name="startsOn" id="StartsOn" required>
+                      </div>
+                    </div>
+
+                    <div class="form-group row">
+                      <label for="name" class="col-sm-4 col-form-label">Places Included</label>
+                      <div class="col-sm-8">
+                        <input type="text"  class="form-control" name="placeIncluded" id="PlaceIncluded" required>
+                        <!-- <input type="text"  class="form-control" name="placeIncluded" id="placeIncluded">
+                        <input type="text"  class="form-control" name="placeIncluded" id="placeIncluded"> -->
+                      </div>
+                    </div>
+                    
+                    <div class="form-group row">
+                      <label for="emp_id" class="col-sm-4 col-form-label">Description</label>
+                      <div class="col-sm-8">
+                        <!-- <input type="text" class="form-control" name="description" id="Description" required > -->
+                        <textarea autocomplete="false" type="text" class="form-control" name="description" id="Description" required  cols="10" rows="2"></textarea>
+                      </div>
+                    </div>
+
+                    <!--<div class="form-group row">
+                      <label for="from" class="col-sm-4 col-form-label">Image</label>
+                      <div class="col-sm-8">
+                        <input readonly type="text"   class="form-control" name="image" id="Image" >
+                      </div>
+                    </div>-->
+
+                    <div class="form-group row">
+                      <label for="name" class="col-sm-4 col-form-label">No Of Days</label>
+                      <div class="col-sm-8">
+                        <input type="tel"  class="form-control" name="noOfDays" id="NoOfDays" required>
+                      </div>
+                    </div>
+
+                    <div class="form-group row">
+                      <label for="to" class="col-sm-4 col-form-label">No Of Nigths</label>
+                      <div class="col-sm-8">
+                        <input type="tel" class="form-control" name="noOfNights" id="NoOfNights" required>
+                      </div>
+                    </div>
+
+                    <div class="form-group row">
+                      <label for="noOfDays" class="col-sm-4 col-form-label">Price</label>
+                      <div class="col-sm-8">
+                        <input type="tel"  class="form-control" name="price" id="Price" required>
+                      </div>
+                    </div>
+
+                    <div class="form-group row">
+                      <label for="noOfDays" class="col-sm-4 col-form-label">Seats Available</label>
+                      <div class="col-sm-8">
+                        <input type="tel"  class="form-control" name="seatsAvailable" id="SeatsAvailable" required>
+                      </div>
+                    </div>
+
+                
+              </div>
+            </div>
+          <div class="modal-footer">
+            <button type="submit" class="btn btn-secondary" onclick="update()" style="width: 20%;">Update</button>
+          </div>
+        </form>
+        <div class="modal-footer">
+            <button type="submit" class="btn btn-danger"data-toggle="modal" data-target="#Backdrop" style="width: 20%;margin-right: 30px;">Delete</button>
+          </div>
+        </form>
+        </div>
+      </div>
+    </div>
+
+
+    
+    <!-- Modal -->
+<div class="modal fade" id="Backdrop" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <br>
+        <h5 class="modal-title" id="staticBackdropLabel">Are you sure you want to delete this data?</h5>
+        <br>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" style="width: 10%;">NO</button>
+          <form id="delete"  method="POST">
+            <button type="submit" class="btn btn-danger" style="width: 130%;">YES</button>
+          </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+       <!-- Modal -->
+  <div class="modal fade" id="StaticBackdrop" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="staticBackdropLabel">Add New Tour</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+            <div class="modal-body">
+              <div class="Container">
+
+                <form action="/addTours" method="POST">
+                  <div class="form-group row">
+                    <label for="Date" class="col-sm-4 col-form-label">Tour Id</label>
+                    <div class="col-sm-8">
+                      <input type="text" readonly class=" form-control" name="tourId" id="TourId">
+                    </div>
+                  </div>
+
+                  <div class="form-group row">
+                    <label for="emp_id" class="col-sm-4 col-form-label">Destination</label>
+                    <div class="col-sm-8">
+                      <input autocomplete="false" type="text" class="form-control" name="from" id="From" required >
+                    </div>
+                  </div>
+
+                  <div class="form-group row">
+                    <label for="emp_id" class="col-sm-4 col-form-label">Starts On</label>
+                    <div class="col-sm-8">
+                      <input type="date" class="form-control" name="startsOn" id="startsOn" required>
+                    </div>
+                  </div>
+
+                  <div class="form-group row">
+                    <label for="name" class="col-sm-4 col-form-label">Places Included</label>
+                    <div class="col-sm-8">
+                      <input autocomplete="false" type="text"  class="form-control" name="placeIncluded" id="placeIncluded" required>
+                    </div>
+                  </div>
+
+                  <div class="form-group row">
+                    <label for="emp_id" class="col-sm-4 col-form-label">Description</label>
+                    <div class="col-sm-8">
+                      <!-- <input autocomplete="false" type="text" class="form-control" name="description" id="Description" required > -->
+                      <textarea autocomplete="false" type="text" class="form-control" name="description" id="Description" required  cols="10" rows="2"></textarea>
+                    </div>
+                  </div>
+
+                 
+
+                  <div class="form-group row">
+                    <label for="name" class="col-sm-4 col-form-label">No Of Days</label>
+                    <div class="col-sm-8">
+                      <input autocomplete="false" type="tel"  class="form-control" name="noOfDays" id="NoOfDays" required>
+                    </div>
+                  </div>
+
+                  <div class="form-group row">
+                    <label for="to" class="col-sm-4 col-form-label">No Of Nights</label>
+                    <div class="col-sm-8">
+                      <input autocomplete="false" type="tel" class="form-control" name="noOfNights" id="NoOfNights" required>
+                    </div>
+                  </div>
+
+                  <div class="form-group row">
+                    <label for="noOfDays" class="col-sm-4 col-form-label">Price</label>
+                    <div class="col-sm-8">
+                      <input autocomplete="false" type="tel"  class="form-control" name="price" id="Price" required>
+                    </div>
+                  </div>  
+
+
+
+                  <div class="form-group row">
+                    <label for="noOfDays" class="col-sm-4 col-form-label">Seats Available</label>
+                    <div class="col-sm-8">
+                      <input autocomplete="false" type="tel"  class="form-control" name="seatsAvailable" id="SeatsAvailable" required>
+                    </div>
+                  </div>
+
+
+               
+              </div>
+            </div>
+          <div class="modal-footer">
+            <button type="submit" class="btn btn-secondary" onclick="submit()" >Submit</button>
+          </div>
+        </form>
+        </div>
+      </div>
+    </div>
+
+    <script>
+
+      $(function() {
+        $(".gfgselect").click(function() {
+          var tourId = $(this).parents("tr").find(".tourId").text();
+          var from = $(this).parents("tr").find(".from").text();
+          var startsOn = $(this).parents("tr").find(".startsOn").text();
+          var placeIncluded = $(this).parents("tr").find(".placeIncluded").text();
+          var description = $(this).parents("tr").find(".description").text();
+          
+          var noOfDays = $(this).parents("tr").find(".noOfDays").text();
+          var noOfNights = $(this).parents("tr").find(".noOfNights").text();
+          var price = $(this).parents("tr").find(".price").text();
+          var seatsAvailable = $(this).parents("tr").find(".seatsAvailable").text();
+          
+          document.getElementById("TourId").value = tourId;
+          document.getElementById("From").value = from;
+          document.getElementById("StartsOn").value = startsOn;
+          document.getElementById("PlaceIncluded").value = placeIncluded;
+          document.getElementById("Description").value = description;
+          
+          document.getElementById("NoOfDays").value = noOfDays;
+          document.getElementById("NoOfNights").value = noOfNights;
+          document.getElementById("Price").value = price;
+          document.getElementById("SeatsAvailable").value = seatsAvailable;
+
+          document.getElementById("delete").setAttribute("action","/tourdelete/"+tourId+"");
+        });
+      });
+
+      
+      function submit() {
+            alert("MESSAGE FROM TRAVEL SERVICE" + "\n" + "\n" + "New Tour was added Sucessfully");
+          }
+
+          function update() {
+            alert("MESSAGE FROM TRAVEL SERVICE" + "\n" + "\n" + "Tours data was updated ");
+          }
+
+           
+    </script>
+
+
+    <!-- Optional JavaScript; choose one of the two! -->
+
+    <!-- Option 1: jQuery and Bootstrap Bundle (includes Popper) -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
+
+    <!-- Option 2: jQuery, Popper.js, and Bootstrap JS
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js" integrity="sha384-w1Q4orYjBQndcko6MimVbzY0tgp4pWB4lZ7lr30WKz0vr/aWKhXdBNmNb5D92v7s" crossorigin="anonymous"></script>
+    -->
+  </body>
+</html>

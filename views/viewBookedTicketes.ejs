@@ -1,0 +1,136 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+
+    <title>Booked Tickets</title>
+  </head>
+  <body>
+
+    <!-- navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light fixed-top bg-light">
+      <a class="navbar-brand" href="#">Travel Services</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+    
+      <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+        <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+          <li class="nav-item ">
+            <a class="nav-link" href="/bookTickets">Book Tickets</a>
+          </li>
+          <li class="nav-item ">
+              <a class="nav-link" href="/bookTours">Explore Tour Packages</a>
+          </li>
+          <li class="nav-item ">
+              <a class="nav-link" href="/viewTickets/<%= userData %>">View Booked Tickets</a>
+          </li>
+        </ul>
+        <form action="/" class="form-inline my-2 my-lg-0">
+          <!-- <h4 style="padding:3px 20px 0px 0px">Hai user</h4> -->
+          <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Log Out</button>
+        </form>
+      </div>
+    </nav>
+
+
+    <!-- display tables -->
+      <div class="container" style="margin-top: 80px;">
+
+        <h2>Booked Bus Tickets</h2>
+        <br>
+
+          <% if(bus_result.length==0){ %>
+            <h3>You haven't booked any Bus Tickets!</h3>
+          <% } else { %>
+            <table class="table table-bordered">
+              <thead class="thead-dark">
+                <tr>
+                  <th scope="col">Ticket Id</th>
+                  <th scope="col">Bus No</th>
+                  <th scope="col">Agency Name</th>
+                  <th scope="col">Source</th>
+                  <th scope="col">Destination</th>
+                  <th scope="col">Date of Booking</th>
+                  <th scope="col">Number of Seats Booked</th>
+                  <th scope="col">Total Price</th>
+                </tr>
+              </thead>
+
+
+              <tbody>
+                <% for(let i=0;i<bus_result.length; i++){ %>
+                <tr>
+                  <th><%= bus_result[i].ticket_id %></th>
+                  <th><%= bus_result[i].bus_number %></th>
+                  <th><%= bus_result[i].agency_name %></th>
+                  <th><%= bus_result[i].source %></th>
+                  <th><%= bus_result[i].destination %></th>
+                  <th><%= bus_result[i].date_of_booking %></th>
+                  <th><%= bus_result[i].no_of_people %></th>
+                  <th><%= bus_result[i].total_price %></th>
+                </tr>
+                <% } %>
+              </tbody>
+            </table>
+            <% } %>
+
+          <br>
+          <hr>
+          <br>
+
+          <h2>Booked Tours Packages</h2>
+          <br>
+
+          <% if(tour_result.length==0){ %>
+            <h3>You haven't booked any Tour Packages!</h3>
+          <% } else { %>
+            <table class="table table-bordered">
+              <thead class="thead-dark">
+                <tr>
+                  <th scope="col">Ticket Id</th>
+                  <th scope="col">Destination</th>
+                  <th scope="col">Journey Starts On</th>
+                  <th scope="col">Days</th>
+                  <th scope="col">Nights</th>
+                  <th scope="col">Date of Booking</th>
+                  <th scope="col">Number of Seats Booked</th>
+                  <th scope="col">Total Price</th>
+                </tr>
+              </thead>
+
+
+              <tbody>
+                <% for(let i=0;i<tour_result.length; i++){ %>
+                <tr>
+                  <th><%= tour_result[i].ticket_id %></th>
+                  <th><%= tour_result[i].source %></th>
+                  <th><%= tour_result[i].start_date %></th>
+                  <th><%= tour_result[i].no_of_days %></th>
+                  <th><%= tour_result[i].no_of_nights %></th>
+                  <th><%= tour_result[i].date_of_booking %></th>
+                  <th><%= tour_result[i].no_of_people %></th>
+                  <th><%= tour_result[i].total_price %></th>
+                </tr>
+                <% } %>
+              </tbody>
+            </table>
+          <% } %>
+
+
+      </div>
+
+
+
+    <!-- Optional JavaScript; choose one of the two! -->
+
+    <!-- Option 1: jQuery and Bootstrap Bundle (includes Popper) -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
+  </body>
+</html>
