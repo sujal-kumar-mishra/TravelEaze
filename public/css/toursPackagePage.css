@@ -1,0 +1,105 @@
+/* GLOBAL STYLES
+-------------------------------------------------- */
+/* Padding below the footer and lighter body text */
+
+body {
+  /* padding-top: 3rem;
+  padding-bottom: 3rem; */
+  color: #5a5a5a;
+}
+
+
+/* CUSTOMIZE THE CAROUSEL
+-------------------------------------------------- */
+
+/* Since positioning the image, we need to help out the caption */
+.carousel-caption {
+  bottom: 3rem;
+  z-index: 10;
+}
+
+/* Declare heights because of positioning of img element */
+.carousel-item {
+  height: 32rem;
+}
+.carousel-item > img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  min-width: 100%;
+  height: 32rem;
+}
+
+/* cards */
+.jumbotron {
+  padding-top: 3rem;
+  padding-bottom: 3rem;
+  margin-bottom: 0;
+  background-color:darkslategrey;
+}
+@media (min-width: 768px) {
+  .jumbotron {
+    padding-top: 6rem;
+    padding-bottom: 6rem;
+  }
+}
+
+.jumbotron p:last-child {
+  margin-bottom: 0;
+}
+
+.jumbotron h1 {
+  font-weight: 300;
+}
+
+.jumbotron .container {
+  max-width: 40rem;
+  color: ghostwhite;
+}
+
+
+
+/* Footer */
+
+.footer {
+  padding: 60px 20px 20px;
+  background-image: linear-gradient(#2d557d,#9610fd);
+  color: #fff;
+}
+
+.footer-logo {
+  width: 150px;
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+.footer h4 {
+  text-align: left;
+  margin-top: 15px;
+  margin-bottom: 25px;
+}
+.footer p {
+  cursor: pointer;
+  font-size: 13px;
+  text-align: left;
+  padding-right: 35px;
+}
+.footer .no-point {
+  cursor: text;
+}
+.footer .row .fa {
+  padding-right: 10px;
+  font-size: 15px;
+}
+
+.footer hr {
+  margin-top: 10px;
+  background: #efefef;
+}
+.footer .copyright {
+  cursor: default;
+  text-align: center;
+}
+.fa-heart {
+  margin: 0 5px;
+  color: #f44336;
+}

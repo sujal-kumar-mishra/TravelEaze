@@ -1,0 +1,24 @@
+.container{
+    position: relative;
+    padding: 50px;
+    margin-top: 40px;
+}
+
+.text{
+    margin-top: 10px;
+    justify-content: center;
+    margin-left: 720px;
+    padding: 5px;
+    color: cornsilk;
+}
+.btn{
+    padding: 5px;
+    margin-top: 10px;
+}
+.form-control{
+    margin-bottom: 5px;
+}
+.button{
+    float: right;
+    padding: 20px;
+}
